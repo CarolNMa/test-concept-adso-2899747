@@ -1,0 +1,27 @@
+@startuml
+title Diagrama de paquetes
+
+package "Inventario" {
+  class Medicamento
+  class Categoria
+  class Lote
+  class Proveedor
+  class Compra
+  class DetalleCompra
+}
+
+package "Recetas y Ventas" {
+  class Paciente
+  class Medico
+  class Receta
+  class RecetaDetalle
+  class Venta
+  class DetalleVenta
+}
+
+package "Usuarios y Seguridad" {
+  class Usuario
+  class Rol
+}
+
+@enduml

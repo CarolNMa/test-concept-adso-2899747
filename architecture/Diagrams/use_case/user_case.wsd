@@ -1,0 +1,54 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam usecase {
+  BackgroundColor White
+  BorderColor #1f2937
+  ArrowColor #4b5563
+}
+skinparam ActorStyle awesome
+
+title Diagrama de Casos de Uso
+
+actor "Administrador" as Admin
+actor "Empleado" as Employee
+actor "Farmacéutico" as Pharmacist
+
+package "Inventario" {
+  (Gestionar Medicamentos) as UC_Meds
+  (Gestionar Categorías) as UC_Cat
+  (Gestionar Lotes) as UC_Lot
+  (Registrar Compras) as UC_Purchase
+}
+
+package "Recetas y Ventas" {
+  (Generar Receta) as UC_Prescription
+  (Registrar Venta) as UC_Sale
+  (Descontar Stock) as UC_Discount
+}
+
+package "Usuarios y Seguridad" {
+  (Login) as UC_Login
+  (Gestionar Usuarios) as UC_Users
+  (Gestionar Roles) as UC_Roles
+}
+
+' Relaciones de actores
+Admin --> UC_Meds
+Admin --> UC_Cat
+Admin --> UC_Lot
+Admin --> UC_Purchase
+Admin --> UC_Users
+Admin --> UC_Roles
+Admin --> UC_Login
+
+Employee --> UC_Sale
+Employee --> UC_Discount
+Employee --> UC_Login
+
+Pharmacist --> UC_Prescription
+Pharmacist --> UC_Login
+
+' Includes
+UC_Sale ..> UC_Discount : <<include>>
+@enduml
