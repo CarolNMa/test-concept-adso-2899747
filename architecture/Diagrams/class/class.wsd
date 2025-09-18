@@ -1,0 +1,110 @@
+@startuml
+skinparam packageStyle rectangle
+skinparam class {
+  BackgroundColor White
+  BorderColor #1f2937
+}
+
+title Diagrama de clases
+
+
+  class Medicamento {
+    +id: Long
+    +nombre: String
+    +precio: Double
+    +estado: String
+  }
+
+  class Categoria {
+    +id: Long
+    +nombre: String
+  }
+
+  class Lote {
+    +id: Long
+    +nroLote: String
+    +fechaVencimiento: Date
+    +stock: int
+  }
+
+  class Proveedor {
+    +id: Long
+    +nombre: String
+  }
+
+  class Compra {
+    +id: Long
+    +fecha: Date
+    +total: Double
+  }
+
+  class DetalleCompra {
+    +id: Long
+    +cantidad: int
+    +costoUnitario: Double
+  }
+  class Paciente {
+    +id: Long
+    +nombre: String
+    +documento: String
+  }
+
+  class Medico {
+    +id: Long
+    +nombre: String
+    +registro: String
+  }
+
+  class Receta {
+    +id: Long
+    +fecha: Date
+  }
+
+  class RecetaDetalle {
+    +id: Long
+    +cantidad: int
+    +indicaciones: String
+  }
+
+  class Venta {
+    +id: Long
+    +fecha: Date
+    +total: Double
+  }
+
+  class DetalleVenta {
+    +id: Long
+    +cantidad: int
+    +precioUnitario: Double
+  }
+
+  class Usuario {
+    +id: Long
+    +nombre: String
+    +email: String
+    +password: String
+    +estado: String
+  }
+
+  class Rol {
+    +id: Long
+    +nombre: String
+  }
+
+' Relaciones
+Categoria "1" -- "0..*" Medicamento
+Medicamento "1" -- "0..*" Lote
+Proveedor "1" -- "0..*" Compra
+Compra "1" -- "1..*" DetalleCompra
+DetalleCompra "*" -- "1" Medicamento
+
+Paciente "1" -- "0..*" Receta
+Medico "1" -- "0..*" Receta
+Receta "1" -- "1..*" RecetaDetalle
+RecetaDetalle "*" -- "1" Medicamento
+
+Venta "1" -- "1..*" DetalleVenta
+DetalleVenta "*" -- "1" Medicamento
+
+Usuario "1" -- "0..*" Rol
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+title Secuencia – Login
+
+actor Usuario
+participant "UI" as UI
+participant "AuthController" as AC
+participant "AuthService" as AS
+database "DB" as DB
+
+Usuario -> UI : Ingresa credenciales
+UI -> AC : POST /login
+AC -> AS : validarUsuario(email, password)
+AS -> DB : SELECT usuario
+DB --> AS : datos usuario
+AC -> UI : Respuesta OK
+UI --> Usuario : Acceso concedido
+@enduml
